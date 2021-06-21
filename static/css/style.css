@@ -1,7 +1,11 @@
 /* remove default margin and padding from body */
 body {
-  padding: 0;
+  padding: 20px;
   margin: 0;
+  background: #c7d2f5;
+}
+.jumbotron {
+text-align: center;
 }
 
 /* set map, body, and html to 100% of the screen size */
@@ -11,6 +15,8 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  float: left;
+  border: 1px solid rgb(71, 71, 155) ;
 }
 body,
 html {
@@ -33,6 +39,12 @@ html {
   margin-right: 8px;
   opacity: 1.5;
  
+}
+/* additional css */
+
+h4 {
+ 
+  float: right  ;
 }
 
 
@@ -100,8 +112,22 @@ html {
   fill: #e75480;
   cursor: pointer;
 }
-
-
+/* *********** */
+/* highcharts */
+/* ********** */
+#container {
+  
+  /* float: right; */
+  height: 500px; 
+  min-width: 310px; 
+  max-width: 600px; 
+  margin: 0 auto; 
+}
+.loading {
+  margin-top: 10em;
+  text-align: center;
+  color: gray;
+}
 
 
 

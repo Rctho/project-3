@@ -8,21 +8,21 @@
     tileSize: 512,
     maxZoom: 18,
     zoomOffset: -1,
-    id: "streets-v11",
+    id: "light-v10",
     accessToken: API_KEY
   });
 
 
   // Define a baseMaps object to hold our map layers
   var baseMaps = {
-    "Street Map": streetmap
+    "US map": streetmap
     
   };
   
 // Create our map, giving it the streetmap and earthquakes layers to display on load
 var myMap = L.map("map", {
     center: [ 37.09, -95.71 ],
-    zoom: 5,
+    zoom: 4,
     layers: [streetmap]     //default selected layer
     });
 
@@ -38,7 +38,7 @@ var elections = new L.LayerGroup();
 
 // // Create overlay object to hold the overlay layer
 var overlayMaps = {
-  Elections: elections
+  Population: elections
   // "Population": population
 };
 
