@@ -1,10 +1,4 @@
 // I worked with Erin Wills (TA) and the following people:  ______________
-// Remember to comment your code as we discuss it.  Commenting the code is required.
-// Prior to starting, make sure  you have already created and cloned your repo.
-
-
-
-// Refer to the pdf diagram to see the visual relationship of the code
 
 // Layout of this document
 // 1.  Data Exploration (always do this; understand its structure)
@@ -156,11 +150,11 @@ function xScale(data, chosenXAxis) {
   
     var label;
   
-    if (chosenXAxis === "poverty") {
-      label = "Poverty:";
+    if (chosenXAxis === "population") {
+      label = "Population:";
     }
     else {
-      label = "Age:";
+      label = "Number Vaccinated:";
     }
   
     var toolTip = d3.tip()
@@ -224,23 +218,49 @@ var chartGroup = svg.append("g")
 // #################### 4.  BRING in Data and ADD Structure ###############//
 
 // Initial Params - includes any axis selection that has multiple options
-var chosenXAxis = "poverty";
-var chosenYAxis = "healthcare";
+var chosenXAxis = "population";
+var chosenYAxis = "state";
 
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("assets/data/data.csv").then(function(data, err) {
+d3.csv("../Resources/cleaneddatasetnew.csv").then(function(data, err) {
   if (err) throw err;
    
   // parse data - set values to numerical data types
   data.forEach(function(data) {
-    data.poverty = +data.poverty;
-    data.healthcare = +data.healthcare;
-    data.age = +data.age;
-    data.income = +data.income;
-    data.obesity = +data.obesity;
-    data.smokes = +data.smokes;
+    data.dem_votes = +data.dem_votes; // data.poverty = +data.poverty;
+    data.rep_votes = +data.rep_votes; // data.healthcare = +data.healthcare;
+    // data.age = +data.age;
+    // data.income = +data.income;
+    // data.obesity = +data.obesity;
+    // data.smokes = +data.smokes;
   });
+
+d3.csv("../Resources/states.csv").then(function(data, err) {
+    if (err) throw err;
+     
+    // parse data - set values to numerical data types
+    data.forEach(function(data) {
+      // data.dem_votes = +data.dem_votes; // data.poverty = +data.poverty;
+      // data.rep_votes = +data.rep_votes; // data.healthcare = +data.healthcare;
+      data.population = +data.population; // data.age = +data.age;
+      // data.actuals.vaccinesAdministered = +data.actuals.vaccinesAdministered;// data.income = +data.income;
+      data.state = +data.state; // data.obesity = +data.obesity;
+      // data.smokes = +data.smokes;
+    });
+
+// d3.csv("../Resources/VaccinationStates.csv").then(function(data, err) {
+//       if (err) throw err;
+       
+//       // parse data - set values to numerical data types
+//       data.forEach(function(data) {
+//         // data.dem_votes = +data.dem_votes; // data.poverty = +data.poverty;
+//         // data.rep_votes = +data.rep_votes; // data.healthcare = +data.healthcare;
+//         // data.population = +data.population; // data.age = +data.age;
+//         // data.actuals.vaccinesAdministered = +data.actuals.vaccinesAdministered;// data.income = +data.income;
+//         // data.state = +data.state; // data.obesity = +data.obesity;
+//         data.metrics.vaccinationsInitiatedRatio = +data.metrics.vaccinationsInitiatedRatio;// data.smokes = +data.smokes;
+//       });
 
   // Data Exploration (Section 1)
   // console.log(data)
@@ -297,51 +317,51 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
   var labelsGroup = chartGroup.append("g")
     .attr("transform", `translate(${width / 2}, ${height + 20})`);
 
-  var povertyLabel = labelsGroup.append("text")
+  var populationLabel = labelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 20)
-    .attr("value", "poverty") // value to grab for event listener
+    .attr("value", "population") // value to grab for event listener
     .classed("active", true)
-    .text("In Poverty (%)");
+    .text("Population");
 
-  var ageLabel = labelsGroup.append("text")
+  var demvotesLabel = labelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 40)
-    .attr("value", "age") // value to grab for event listener
+    .attr("value", "dem_votes") // value to grab for event listener
     .classed("inactive", true)
-    .text("Age");
+    .text("Votes for Joe Biden");
 
-    var incomeLabel = labelsGroup.append("text")
+    var repvotesLabel = labelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 60)
-    .attr("value", "income") // value to grab for event listener
+    .attr("value", "rep_votes") // value to grab for event listener
     .classed("inactive", true)
-    .text("Income");
+    .text("Votes for Donald Trump");
 
   // append y axis
   var ylabelsGroup = chartGroup.append("g")
     .attr("transform", "rotate(-90)");
 
-    var healthcareLabel = ylabelsGroup.append("text")
+    var stateLabel = ylabelsGroup.append("text")
     .attr("y", 20 - margin.left)
     .attr("x", 0 - (height / 2))
-    .attr("value", "healthcare") // value to grab for event listener
+    .attr("value", "state") // value to grab for event listener
     .classed("axis-text", true)
-    .text("Lacks Healthcare (%)");
+    .text("State");
 
-    var obesityLabel = ylabelsGroup.append("text")
+    var populationLabel = ylabelsGroup.append("text")
     .attr("y", 40 - margin.left)
     .attr("x", 0 - (height / 2))
-    .attr("value", "obesity") // value to grab for event listener
+    .attr("value", "population") // value to grab for event listener
     .classed("axis-text", true)
-    .text("Obesity");
+    .text("Population");
 
-    var smokesLabel = ylabelsGroup.append("text")
-    .attr("y", 60 - margin.left)
-    .attr("x", 0 - (height / 2))
-    .attr("value", "smokes") // value to grab for event listener
-    .classed("axis-text", true)
-    .text("Smokes");
+    // var smokesLabel = ylabelsGroup.append("text")
+    // .attr("y", 60 - margin.left)
+    // .attr("x", 0 - (height / 2))
+    // .attr("value", "smokes") // value to grab for event listener
+    // .classed("axis-text", true)
+    // .text("Smokes");
 
   // updateToolTip function above csv import
   var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
@@ -382,36 +402,36 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
         circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
 
         // changes classes to change bold text
-        if (chosenXAxis === "age") {
-          ageLabel
+        if (chosenXAxis === "population") {
+          populationLabel
             .classed("active", true)
             .classed("inactive", false);
-          povertyLabel
+          demvotesLabel
             .classed("active", false)
             .classed("inactive", true);
-            incomeLabel
+            repvotesLabel
             .classed("active", false)
             .classed("inactive", true);
         }
-        else if (chosenXAxis === "poverty"){
-          ageLabel
+        else if (chosenXAxis === "dem_votes"){
+          populationLabel
             .classed("active", false)
             .classed("inactive", true);
-            incomeLabel
+            repvotesLabel
             .classed("active", false)
             .classed("inactive", true);
-            povertyLabel
+            demvotesLabel
             .classed("active", true)
             .classed("inactive", false);
         }
-        else if (chosenXAxis === "income"){
-          ageLabel
+        else if (chosenXAxis === "rep_votes"){
+          populationLabel
             .classed("active", false)
             .classed("inactive", true);
-            incomeLabel
+            repvotesLabel
             .classed("active", true)
             .classed("inactive", false);
-            povertyLabel
+            demvotesLabel
             .classed("active", false)
             .classed("inactive", true);
 
@@ -448,40 +468,40 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
         circlesGroup = updateToolTip(chosenYAxis, circlesGroup);
 
         // changes classes to change bold text
-        if (chosenYAxis === "healthcare") {
-          healthcareLabel
+        if (chosenYAxis === "state") {
+          stateLabel
             .classed("active", true)
             .classed("inactive", false);
-          obesityLabel
+          populationLabel
             .classed("active", false)
             .classed("inactive", true);
-            smokesLabel
-            .classed("active", false)
-            .classed("inactive", true);
+          //   smokesLabel
+          //   .classed("active", false)
+          //   .classed("inactive", true);
         }
-        else if (chosenYAxis === "obesity"){
-          healthcareLabel
+        else if (chosenYAxis === "population"){
+          stateLabel
             .classed("active", false)
             .classed("inactive", true);
-            smokesLabel
+            populationLabel
             .classed("active", false)
             .classed("inactive", true);
-            obesityLabel
-            .classed("active", true)
-            .classed("inactive", false);
+        //     obesityLabel
+        //     .classed("active", true)
+        //     .classed("inactive", false);
         }
-        else if (chosenYAxis === "smokes"){
-          healthcareLabel
-            .classed("active", false)
-            .classed("inactive", true);
-            smokesLabel
-            .classed("active", true)
-            .classed("inactive", false);
-            obesityLabel
-            .classed("active", false)
-            .classed("inactive", true);
+        // else if (chosenYAxis === "smokes"){
+        //   healthcareLabel
+        //     .classed("active", false)
+        //     .classed("inactive", true);
+        //     smokesLabel
+        //     .classed("active", true)
+        //     .classed("inactive", false);
+        //     obesityLabel
+        //     .classed("active", false)
+        //     .classed("inactive", true);
 
-        }
+        // }
         else{
           console.log("it didn't work");
         }
@@ -489,6 +509,5 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     });
 }).catch(function(error) {
   console.log(error);
-
-
+  })
 });
