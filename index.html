@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <title>Interactive US maps</title>
 
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -13,7 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
 
 <!-- highcharts cdn -->
-<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.cs 
+<!-- <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.cs  -->
 <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" type="text/css">
 
   <!-- Our CSS -->
@@ -31,14 +33,14 @@
           </h1>
           <p>
              Created by:  Nabila, Rachel, Eugene and Kiril. 
-             
           </p>
-        
+          <h5>This project represents presidential elections, vaccination and population data for each state.
+            The data is visualized via different resourses,  such as: Leaflet, Mapbox, Highcharts, D3, HTML and Webscraping.</h5>
           <p>
+            <br>
+            
             <a class="btn btn-primary btn-large" href="reference.html">Learn more</a>
           </p>
-          <br>
-          <br>
 
         </div>
       </div>
@@ -52,34 +54,43 @@
          
         </h2>
         
-         <div id="map" style="width: 650px; height: 500px"></div>
-         <h4> new story about for bla bla bla</h4>
-     
+      <div id="map" style="width: 650px; height: 500px"></div>
+          <!-- <div class="col-md-3">
+         <h4> This project represents presidential elections, vaccination and population data for each state.
+           The data is visualized via different resourses,  such as: Leaflet, Mapbox, Highcharts, Webscraping and D3.
+            </h4>
+         </div> -->
              </div>
  
                     
       <div class="col-md-6">
+        <h2>
+         <center> Election results map</center>
+         
+        </h2>
         
         <div id="container">
           <div class="loading">
             <i class="icon-spinner icon-spin icon-large"></i>
             Loading data from Google Spreadsheets...
           
+          </div>
+        </div>
       </div>
-      
-    </div>
-    <br>
-    <br>
+   
     <h2>
-     <center> Web scrape page</center>
+           <center> Web scrape page</center>
     </h2>
+    <div class="col-md-12">
+    <center><iframe src="https://www.cnn.com/election/2020/results/president/" title="Election Results" style="width: 1200px; height: 500px"></iframe></center>
+    </div>
     <br>
     <br>
     <h2>
      <center> Interactive graph</center>
     </h2>
      <!-- D3 graph -->
-  <div class="chart"></div>
+  <center><div class="chart"></div></center>
 
   <!-- The div where we will inject our map -->
   <br>
@@ -104,7 +115,7 @@
 
   <!-- D3 graph -->
   <div class="chart"></div>
-
+</div>
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
