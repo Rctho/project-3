@@ -54,7 +54,7 @@ L.control.layers(baseMaps, overlayMaps, {
   L.geoJson(data, {
     onEachFeature: function(feature, layer) {
       layer.bindPopup("<h3> State:" + feature.properties.NAME +
-        "</h3><hr><p> Population:" + feature.properties.CENSUSAREA + "</p>");
+        "</h3><hr><p> Population:" + feature.properties.population +"</h3><p> Vaccination rate:"+ feature.properties.vac_ratio*100 +"%"+ "</p>");
     }
     // pointToLayer: function(feature, latlng) {
     //   return new L.CircleMarker(latlng, {
