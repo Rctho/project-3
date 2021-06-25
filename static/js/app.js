@@ -54,8 +54,8 @@
 function xScale(data, chosenXAxis) {
     // create scales
     var xLinearScale = d3.scaleLinear()
-      .domain([d3.min(data, d => d[chosenXAxis]) * 0.8,
-        d3.max(data, d => d[chosenXAxis]) * 1.2
+      .domain([d3.min(data, d => d[chosenXAxis]) * 0.5,
+        d3.max(data, d => d[chosenXAxis]) * 1.5
       ])
       .range([0, width]);  //width define at beginning of main code
   
@@ -69,8 +69,8 @@ function xScale(data, chosenXAxis) {
     function yScale(data, chosenYAxis) {
       // create scales
       var yLinearScale = d3.scaleLinear()
-        .domain([d3.min(data, d => d[chosenYAxis]) * 0.8,
-          d3.max(data, d => d[chosenYAxis]) * 1.2
+        .domain([d3.min(data, d => d[chosenYAxis]) * 0.5,
+          d3.max(data, d => d[chosenYAxis]) * 1.5
         ])
         .range([height, 0]);  //width define at beginning of main code
     
@@ -218,15 +218,15 @@ var chartGroup = svg.append("g")
 // #################### 4.  BRING in Data and ADD Structure ###############//
 
 // Initial Params - includes any axis selection that has multiple options
-var chosenXAxis = "population";
-var chosenYAxis = "population";
+var chosenXAxis = "vac_ratio";
+var chosenYAxis = "dem_percent";
 
 
 // Retrieve data from the CSV file and execute everything below
 d3.csv("../Resources/vaxx_votes_pop.csv").then(function(data, err) {
   if (err) throw err;
-  console.log("my data starts here");
-   console.log(data);
+  // console.log("my data starts here");
+  //  console.log(data);
   // parse data - set values to numerical data types
   data.forEach(function(data) {
     data.dem_votes = +data.dem_percent; 
@@ -235,7 +235,8 @@ d3.csv("../Resources/vaxx_votes_pop.csv").then(function(data, err) {
     data.state = data.state; 
     data.vac_ratio = +data.vac_ratio;
   });
-
+  console.log("my data starts here");
+  console.log(data);
 
 // d3.csv("../Resources/states.csv").then(function(data, err) {
 //     if (err) throw err;
@@ -320,14 +321,14 @@ d3.csv("../Resources/vaxx_votes_pop.csv").then(function(data, err) {
   var demvotesLabel = labelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 40)
-    .attr("value", "dem_votes") // value to grab for event listener
+    .attr("value", "dem_percent") // value to grab for event listener
     .classed("inactive", true)
     .text("Votes for Joe Biden");
 
     var repvotesLabel = labelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 60)
-    .attr("value", "rep_votes") // value to grab for event listener
+    .attr("value", "rep_percent") // value to grab for event listener
     .classed("inactive", true)
     .text("Votes for Donald Trump");
 
@@ -335,12 +336,12 @@ d3.csv("../Resources/vaxx_votes_pop.csv").then(function(data, err) {
   var ylabelsGroup = chartGroup.append("g")
     .attr("transform", "rotate(-90)");
 
-    var stateLabel = ylabelsGroup.append("text")
-    .attr("y", 20 - margin.left)
-    .attr("x", 0 - (height / 2))
-    .attr("value", "state") // value to grab for event listener
-    .classed("axis-text", true)
-    .text("State");
+    // var stateLabel = ylabelsGroup.append("text")
+    // .attr("y", 20 - margin.left)
+    // .attr("x", 0 - (height / 2))
+    // .attr("value", "state") // value to grab for event listener
+    // .classed("axis-text", true)
+    // .text("State");
 
     var populationLabel = ylabelsGroup.append("text")
     .attr("y", 40 - margin.left)
@@ -406,7 +407,7 @@ d3.csv("../Resources/vaxx_votes_pop.csv").then(function(data, err) {
             .classed("active", false)
             .classed("inactive", true);
         }
-        else if (chosenXAxis === "dem_votes"){
+        else if (chosenXAxis === "dem_percent"){
           populationLabel
             .classed("active", false)
             .classed("inactive", true);
@@ -417,7 +418,7 @@ d3.csv("../Resources/vaxx_votes_pop.csv").then(function(data, err) {
             .classed("active", true)
             .classed("inactive", false);
         }
-        else if (chosenXAxis === "rep_votes"){
+        else if (chosenXAxis === "rep_percent"){
           populationLabel
             .classed("active", false)
             .classed("inactive", true);
