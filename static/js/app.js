@@ -184,8 +184,8 @@ function xScale(data, chosenXAxis) {
 
 //########################  3.  SVG Setup ###################################//
 
-var svgWidth = 960;
-var svgHeight = 500;
+var svgWidth = 1100;
+var svgHeight = 650;
 
 var margin = {
   top: 20,
@@ -295,7 +295,7 @@ d3.csv("../Resources/vaxx_votes_pop.csv").then(function(data, err) {
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d.healthcare))
     .attr("r", 20)
-    .attr("fill", "red")
+    .attr("fill", "purple")
     .attr("opacity", ".85");
 
   // added by Erin - I wanted to add text to the circles - probably several ways of doing this but here is one.
