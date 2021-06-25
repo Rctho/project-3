@@ -236,6 +236,7 @@ d3.csv("../Resources/vaxx_votes_pop.csv").then(function(data, err) {
     data.vac_ratio = +data.vac_ratio;
   });
 
+
 // d3.csv("../Resources/states.csv").then(function(data, err) {
 //     if (err) throw err;
      
@@ -252,6 +253,7 @@ d3.csv("../Resources/vaxx_votes_pop.csv").then(function(data, err) {
 //       data.forEach(function(data) {
 //          data.vac_ratio = +data.vac_ratio;
 //       });
+
 
   // Data Exploration (Section 1)
   // console.log(data)
