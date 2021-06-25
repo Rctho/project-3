@@ -150,18 +150,21 @@ function xScale(data, chosenXAxis) {
   
     var label;
   
-    if (chosenXAxis === "population") {
+    if (chosenXAxis === "population" ) {
       label = "Population:";
     }
-    else {
-      label = "Number Vaccinated:";
+    else if (chosenXAxis === "dem_percent" ) {
+      label = "Votes for Biden:";
+    }
+    else if (chosenXAxis === "rep_percent" ) {
+      label = " Votes for Trump:";
     }
   
     var toolTip = d3.tip()
       .attr("class", "tooltip")
       .offset([80, -60])
       .html(function(d) {
-        return (`${d.state}<br>${label} ${d[chosenXAxis]}`);
+        return (`${d.state}<br>${label} ${d[chosenXAxis]}%`);
       });
     
     //Note:  Below circlesGroup is having the tooltip added but other elements could also have the tool tip added
