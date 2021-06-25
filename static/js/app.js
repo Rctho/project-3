@@ -223,31 +223,35 @@ var chosenYAxis = "population";
 
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("../Resources/cleaneddatasetnew.csv").then(function(data, err) {
+d3.csv("../Resources/vaxx_votes_pop.csv").then(function(data, err) {
   if (err) throw err;
-   
+  console.log("my data starts here");
+   console.log(data);
   // parse data - set values to numerical data types
   data.forEach(function(data) {
-    data.dem_votes = +data.dem_votes; 
-    data.rep_votes = +data.rep_votes; 
+    data.dem_votes = +data.dem_percent; 
+    data.rep_votes = +data.rep_percent; 
+    data.population = +data.population; 
+    data.state = data.state; 
+    data.vac_ratio = +data.vac_ratio;
   });
 
-d3.csv("../Resources/states.csv").then(function(data, err) {
-    if (err) throw err;
+// d3.csv("../Resources/states.csv").then(function(data, err) {
+//     if (err) throw err;
      
-    // parse data - set values to numerical data types
-    data.forEach(function(data) {
-      data.population = +data.population; 
-      data.state = +data.state; 
-    });
+//     // parse data - set values to numerical data types
+//     data.forEach(function(data) {
+//       data.population = +data.population; 
+//       data.state = +data.state; 
+//     });
 
-d3.csv("../Resources/vaccination_ratio.csv").then(function(data, err) {
-      if (err) throw err;
+// d3.csv("../Resources/vaccination_ratio.csv").then(function(data, err) {
+//       if (err) throw err;
        
-      // parse data - set values to numerical data types
-      data.forEach(function(data) {
-         data.vac_ratio = +data.vac_ratio;
-      });
+//       // parse data - set values to numerical data types
+//       data.forEach(function(data) {
+//          data.vac_ratio = +data.vac_ratio;
+//       });
 
   // Data Exploration (Section 1)
   // console.log(data)
@@ -288,8 +292,8 @@ d3.csv("../Resources/vaccination_ratio.csv").then(function(data, err) {
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d.healthcare))
     .attr("r", 20)
-    .attr("fill", "pink")
-    .attr("opacity", ".5");
+    .attr("fill", "red")
+    .attr("opacity", ".85");
 
   // added by Erin - I wanted to add text to the circles - probably several ways of doing this but here is one.
   // data is bound to ciclesGroupAll like above and now I add a text element at "x" and "y", not the difference from above.
@@ -496,6 +500,5 @@ d3.csv("../Resources/vaccination_ratio.csv").then(function(data, err) {
     });
 }).catch(function(error) {
   console.log(error);
-  })
- })
+
 });

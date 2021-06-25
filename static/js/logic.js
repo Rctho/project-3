@@ -38,7 +38,7 @@ var elections = new L.LayerGroup();
 
 // // Create overlay object to hold the overlay layer
 var overlayMaps = {
-  Population: elections
+  "Vaccination rate": elections
   // "Population": population
 };
 
@@ -54,7 +54,7 @@ L.control.layers(baseMaps, overlayMaps, {
   L.geoJson(data, {
     onEachFeature: function(feature, layer) {
       layer.bindPopup("<h3> State:" + feature.properties.NAME +
-        "</h3><hr><p> Population:" + feature.properties.population +"</h3><p> Vaccination rate:"+ feature.properties.vac_ratio*100 +"%"+ "</p>");
+      "</h3><hr><p> Vaccination rate:"+ feature.properties.vac_ratio*100 +"%"+"</h3><p> Population:" + feature.properties.population + "</p>");
     }
     // pointToLayer: function(feature, latlng) {
     //   return new L.CircleMarker(latlng, {
