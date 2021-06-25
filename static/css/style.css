@@ -6,16 +6,20 @@ body {
 }
 .jumbotron {
 text-align: center;
+
 }
+
+
+
 
 /* set map, body, and html to 100% of the screen size */
 #map
 {
   width: 100%;
   height: 100%;
-  padding: 0;
+  padding:0;
   margin: 0;
-  float: left;
+  /* float: left; */
   border: 1px solid rgb(71, 71, 155) ;
 }
 body,
@@ -109,7 +113,7 @@ h4 {
 }
 ​
 .inactive:hover {
-  fill: #e75480;
+  fill: #b41243;
   cursor: pointer;
 }
 /* *********** */
