@@ -219,7 +219,7 @@ var chartGroup = svg.append("g")
 
 // Initial Params - includes any axis selection that has multiple options
 var chosenXAxis = "population";
-var chosenYAxis = "state";
+var chosenYAxis = "population";
 
 
 // Retrieve data from the CSV file and execute everything below
@@ -228,12 +228,8 @@ d3.csv("../Resources/cleaneddatasetnew.csv").then(function(data, err) {
    
   // parse data - set values to numerical data types
   data.forEach(function(data) {
-    data.dem_votes = +data.dem_votes; // data.poverty = +data.poverty;
-    data.rep_votes = +data.rep_votes; // data.healthcare = +data.healthcare;
-    // data.age = +data.age;
-    // data.income = +data.income;
-    // data.obesity = +data.obesity;
-    // data.smokes = +data.smokes;
+    data.dem_votes = +data.dem_votes; 
+    data.rep_votes = +data.rep_votes; 
   });
 
 d3.csv("../Resources/states.csv").then(function(data, err) {
@@ -241,26 +237,17 @@ d3.csv("../Resources/states.csv").then(function(data, err) {
      
     // parse data - set values to numerical data types
     data.forEach(function(data) {
-      // data.dem_votes = +data.dem_votes; // data.poverty = +data.poverty;
-      // data.rep_votes = +data.rep_votes; // data.healthcare = +data.healthcare;
-      data.population = +data.population; // data.age = +data.age;
-      // data.actuals.vaccinesAdministered = +data.actuals.vaccinesAdministered;// data.income = +data.income;
-      data.state = +data.state; // data.obesity = +data.obesity;
-      // data.smokes = +data.smokes;
+      data.population = +data.population; 
+      data.state = +data.state; 
     });
 
-// d3.csv("../Resources/VaccinationStates.csv").then(function(data, err) {
-//       if (err) throw err;
+d3.csv("../Resources/vaccination_ratio.csv").then(function(data, err) {
+      if (err) throw err;
        
-//       // parse data - set values to numerical data types
-//       data.forEach(function(data) {
-//         // data.dem_votes = +data.dem_votes; // data.poverty = +data.poverty;
-//         // data.rep_votes = +data.rep_votes; // data.healthcare = +data.healthcare;
-//         // data.population = +data.population; // data.age = +data.age;
-//         // data.actuals.vaccinesAdministered = +data.actuals.vaccinesAdministered;// data.income = +data.income;
-//         // data.state = +data.state; // data.obesity = +data.obesity;
-//         data.metrics.vaccinationsInitiatedRatio = +data.metrics.vaccinationsInitiatedRatio;// data.smokes = +data.smokes;
-//       });
+      // parse data - set values to numerical data types
+      data.forEach(function(data) {
+         data.vac_ratio = +data.vac_ratio;
+      });
 
   // Data Exploration (Section 1)
   // console.log(data)
@@ -356,12 +343,12 @@ d3.csv("../Resources/states.csv").then(function(data, err) {
     .classed("axis-text", true)
     .text("Population");
 
-    // var smokesLabel = ylabelsGroup.append("text")
-    // .attr("y", 60 - margin.left)
-    // .attr("x", 0 - (height / 2))
-    // .attr("value", "smokes") // value to grab for event listener
-    // .classed("axis-text", true)
-    // .text("Smokes");
+    var vaccinationLabel = ylabelsGroup.append("text")
+    .attr("y", 60 - margin.left)
+    .attr("x", 0 - (height / 2))
+    .attr("value", "vac_ratio") // value to grab for event listener
+    .classed("axis-text", true)
+    .text("Vaccination Rate");
 
   // updateToolTip function above csv import
   var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
@@ -475,9 +462,9 @@ d3.csv("../Resources/states.csv").then(function(data, err) {
           populationLabel
             .classed("active", false)
             .classed("inactive", true);
-          //   smokesLabel
-          //   .classed("active", false)
-          //   .classed("inactive", true);
+            vaccinationLabel
+            .classed("active", false)
+            .classed("inactive", true);
         }
         else if (chosenYAxis === "population"){
           stateLabel
@@ -486,22 +473,22 @@ d3.csv("../Resources/states.csv").then(function(data, err) {
             populationLabel
             .classed("active", false)
             .classed("inactive", true);
-        //     obesityLabel
-        //     .classed("active", true)
-        //     .classed("inactive", false);
+            vaccinationLabel
+            .classed("active", true)
+            .classed("inactive", false);
         }
-        // else if (chosenYAxis === "smokes"){
-        //   healthcareLabel
-        //     .classed("active", false)
-        //     .classed("inactive", true);
-        //     smokesLabel
-        //     .classed("active", true)
-        //     .classed("inactive", false);
-        //     obesityLabel
-        //     .classed("active", false)
-        //     .classed("inactive", true);
+        else if (chosenYAxis === "vac_ratio"){
+          stateLabel
+            .classed("active", false)
+            .classed("inactive", true);
+            populationLabel
+            .classed("active", false)
+            .classed("inactive", false);
+            vaccinationLabel
+            .classed("active", true)
+            .classed("inactive", false);
 
-        // }
+        }
         else{
           console.log("it didn't work");
         }
@@ -510,4 +497,5 @@ d3.csv("../Resources/states.csv").then(function(data, err) {
 }).catch(function(error) {
   console.log(error);
   })
+ })
 });
