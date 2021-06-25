@@ -47,6 +47,10 @@ def scrape_cnn_news():
   content_title = list_text_all[0]
   news_title = content_title.text.strip()
 
+  # Scrap trump and Biden images
+  # picture1 = news_soup.find_all('div',class_ = 'balance-of-powerstyles__BOPHeadshotContainer-rb0qgc-4 gLMYQt')
+  # print (picture1)
+  
 
   # content_subtitle = list_text_all[0].find('div', class_ = 'bUXXrl')
   news_subtitle_text_all = news_soup.find_all('p', class_ = 'bUXXrl')
@@ -62,6 +66,8 @@ def scrape_cnn_news():
   news_info_dict['news_title'] = news_title
   news_info_dict['news_subtitle'] = news_substitle
   news_info_dict['news_paragraph'] = news_p
+  # news_image_dict['trump'] = picture1
+  # news_image_dict['biden'] = picture2
 
   browser.quit()
   return news_info_dict
