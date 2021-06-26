@@ -49,7 +49,7 @@ Figure 4 shows a scatterplot comparing all fifty states, whether they were red o
 ## Conclusion
 
 
-Our initial hypotheses for COVID-19 vaccination rates were that the higher the population the state has, the greater the vaccination rate. Our second hypothesis in terms of the 2020 election was that vaccination ratios by state would be dependent on whether it was blue or red. After analyzing the data, it is evident that states that voted for Donald Trump have shown to have a weak negative correlation. The data further shows that states that voted for Joe Biden have a weak positive correlation. The population versus vaccination ratio data does not show a statistically significant relationship.
+Our initial hypotheses for COVID-19 vaccination rates were that the higher the population the state has, the greater the vaccination rate. Our second hypothesis in terms of the 2020 election was that vaccination ratios by state would be dependent on whether it was blue or red. After analyzing the data, it is evident that states that voted for Donald Trump have shown to have a statistically significant correlation with the number of people vaccinated for COVID-19. States that voted for Joe Biden also had a strong positive correlation, with more people getting vaccinated for COVID-19 versus the states that voted for Donald Trump.
 
 
 
