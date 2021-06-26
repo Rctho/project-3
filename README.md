@@ -2,7 +2,7 @@
  
 Eugene, Kiril Ivanov, Rachel Thorpe, Nabila Rizvi
  
-##Introduction
+## Introduction
 
 
 Did the results of the 2020 election affect the number of individuals vaccinated (at least once) for COVID-19? The images below show a breakdown of vaccination rates, population by state and/or the 2020 election results. 
